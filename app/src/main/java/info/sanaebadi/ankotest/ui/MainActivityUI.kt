@@ -1,9 +1,12 @@
-package info.sanaebadi.ankotest
+package info.sanaebadi.ankotest.ui
 
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Build
 import android.view.Gravity
+import info.sanaebadi.ankotest.activity.MainActivity
+import info.sanaebadi.ankotest.R
+import info.sanaebadi.ankotest.activity.SecondActivity
 import org.jetbrains.anko.*
 import org.jetbrains.anko.design.longSnackbar
 import org.jetbrains.anko.sdk25.coroutines.onClick
@@ -36,15 +39,31 @@ class MainActivityUI : AnkoComponent<MainActivity> {
                     }
                 }
 
-                button("Show Snackbar"){
+                button("Show Snackbar") {
                     onClick {
-                        longSnackbar(this@frameLayout,textField.text.toString())
+                        longSnackbar(this@frameLayout, textField.text.toString())
                     }
                 }
 
             }.lparams {
                 gravity = Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL
                 bottomMargin = dip(72)
+            }
+
+            button("Go to Next Page") {
+                textSize=13f
+                textColor=Color.parseColor("#992255")
+                backgroundColor=Color.parseColor("#ffffff")
+                padding=dip(10)
+                onClick {
+                    startActivity<SecondActivity>()
+                }
+            }.lparams(
+                dip(120),
+                dip(50),
+                gravity = Gravity.BOTTOM or Gravity.CENTER
+            ){
+                margin=dip(10)
             }
         }
     }
